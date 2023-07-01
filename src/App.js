@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import "./App.css";
+import Display from "./Display";
+import SearchBar from "./SearchBar";
+// import Slider from "./temp/Replace";
+
+// import { useState } from "react";
 
 function App() {
+  const [city, setCity] = useState("Mumbai");
+
+  const update = (c) => {
+    // console.log(c, "update from app");
+    setCity(c);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="content">
+        <div className="head">
+          <SearchBar update={(updateCity) => update(updateCity)} />
+        </div>
+
+        <header className="header">Weather Details</header>
+
+        <div className="main">
+          <Display city={city} />
+        </div>
+      </div>
+    </>
   );
 }
 
 export default App;
+
